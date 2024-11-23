@@ -18,5 +18,5 @@ func NewSprite(char rune, x, y int) *Sprite {
 }
 
 func (s *Sprite) Draw(screen tcell.Screen) {
-	screen.SetContent(s.X, s.Y, s.Char, nil, tcell.StyleDefault.Foreground(s.Color))
+	screen.SetContent(s.X, s.Y, s.Char, nil, tcell.StyleDefault.Background(s.Color))
 }
