@@ -1,7 +1,6 @@
 package main
 
 import (
-	// "fmt"
 	"log"
 	"time"
 
@@ -65,6 +64,7 @@ func main() {
 				}
 
 				screen.SetContent(cursor.X, cursor.Y, cursor.Char, nil, tcell.StyleDefault.Background(tcell.ColorTeal))
+
 				screen.Show()
 			}
 		}
@@ -74,9 +74,19 @@ func main() {
 
 	running := true
 	for running {
+		// [ update - start ]
 		screen.Clear()
 
+		player.Draw(screen)
+		player2.Draw(screen)
+		for _, s := range sprites {
+			screen.SetContent(s.X, s.Y, s.Char, nil, tcell.StyleDefault.Foreground(s.Color))
+		}
+
+		screen.SetContent(cursor.X, cursor.Y, cursor.Char, nil, tcell.StyleDefault.Background(tcell.ColorTeal))
+
 		screen.Show()
+		// [ update - end ]
 
 		ev := screen.PollEvent()
 		switch ev := ev.(type) {
@@ -90,6 +100,7 @@ func main() {
 					Color: tcell.ColorWhite,
 				})
 				continue
+
 			case 'j', 's':
 				cursor.Y += 1
 			case 'k', 'w':
