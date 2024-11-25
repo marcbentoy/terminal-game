@@ -22,5 +22,6 @@ func NewCursor(screen *tcell.Screen) *Cursor {
 }
 
 func (c *Cursor) Draw() {
-
+	screen := *c.Screen
+	screen.SetContent(c.X, c.Y, c.Char, nil, tcell.StyleDefault.Background(tcell.ColorTeal))
 }
